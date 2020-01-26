@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { RootState } from '../reducers';
 import { FooterAction, decrement, increment, reset } from '../actions/footerActions';
 

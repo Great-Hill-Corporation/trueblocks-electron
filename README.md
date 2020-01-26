@@ -9,7 +9,7 @@
 [![Redux](docs/img/redux.png)](https://redux.js.org/)
 [![Jest](docs/img/jest.png)](https://facebook.github.io/jest/)
 
-Based on [Electron](https://electronjs.org/) application boilerplate based on [React](https://reactjs.org/), [Redux](https://redux.js.org/), and [Webpack](https://webpack.js.org/) for rapid application development using [TypeScript](https://www.typescriptlang.org/).
+Based on [Electron](https://electronjs.org/) application boilerplate with [React](https://reactjs.org/), [Redux](https://redux.js.org/), [Webpack](https://webpack.js.org/) and [TypeScript](https://www.typescriptlang.org/).
 
 ## Install
 Clone the repository with Git:
