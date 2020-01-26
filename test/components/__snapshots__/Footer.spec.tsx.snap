@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component renders correctly 1`] = `
+<div
+  className="footer"
+>
+  <p>
+    <img
+      src="test-file-stub"
+    />
+  </p>
+  <p
+    id="footer-value"
+  >
+    Current value: 
+    1
+  </p>
+  <p>
+    <button
+      id="increment"
+      onClick={[MockFunction]}
+    >
+      Increment
+    </button>
+    <button
+      id="decrement"
+      onClick={[MockFunction]}
+    >
+      Decrement
+    </button>
+    <button
+      id="reset"
+      onClick={[MockFunction]}
+    >
+      Reset
+    </button>
+  </p>
+</div>
+`;
