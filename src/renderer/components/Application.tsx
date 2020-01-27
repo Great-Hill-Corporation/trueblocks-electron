@@ -11,24 +11,24 @@ import Footer from './Footer';
 const myStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    display: 'flex',
+    display: 'flex'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+      duration: theme.transitions.duration.leavingScreen
+    })
   },
   wholePage: {
-    marginTop: '4em',
+    marginTop: '4em'
   },
   card: {
     border: '1px dashed darkblue',
     padding: theme.spacing(2),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
+    color: theme.palette.text.secondary
+  }
 }));
 
 const Application = (): JSX.Element => <WholePage />;

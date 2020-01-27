@@ -7,7 +7,7 @@ export interface FooterState {
 }
 
 const defaultState: FooterState = {
-  value: 10,
+  value: 10
 };
 
 export const footerReducer: Reducer<FooterState> = (state = defaultState, action: FooterAction) => {
@@ -15,17 +15,17 @@ export const footerReducer: Reducer<FooterState> = (state = defaultState, action
     case INCREMENT:
       return {
         ...state,
-        value: state.value + 1,
+        value: state.value + 1
       };
     case DECREMENT:
       return {
         ...state,
-        value: state.value - 1,
+        value: state.value - 1
       };
     case RESET:
       return {
         ...state,
-        value: defaultState.value,
+        value: defaultState.value
       };
     default:
       return state;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch, Action } from 'redux';
-import { RootState } from '../reducers';
+import { RootState } from '../../root-reducers';
 import { FooterAction, decrement, increment, reset } from '../actions/footerActions';
 
 require('./Footer.scss');
@@ -31,13 +31,13 @@ const Footer: React.FunctionComponent<Props> = ({ value, incrementValue, decreme
 );
 
 const mapStateToProps = (state: RootState) => ({
-  value: state.footer.value,
+  value: state.footer.value
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<FooterAction>) => ({
   incrementValue: () => dispatch(increment()),
   decrementValue: () => dispatch(decrement()),
-  resetValue: () => dispatch(reset()),
+  resetValue: () => dispatch(reset())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);
