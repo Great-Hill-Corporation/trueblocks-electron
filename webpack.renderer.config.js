@@ -1,12 +1,69 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+
+'use strict';
+
 const webpack = require('webpack');
-const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const path = require('path');
+const spawn = require('child_process').spawn;
 
-const baseConfig = require('./webpack.base.config');
+const resolve =
+  process.env.NODE_ENV === 'production'
+    ? {}
+    : {
+        alias: {
+          'react-dom': '@hot-loader/react-dom'
+        }
+      };
 
-module.exports = merge.smart(baseConfig, {
+const devServer =
+  process.env.NODE_ENV === 'production'
+    ? {}
+    : {
+        port: 2003,
+        compress: true,
+        noInfo: true,
+        stats: 'errors-only',
+        inline: true,
+        hot: true,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        historyApiFallback: {
+          verbose: true,
+          disableDotRule: false
+        },
+        before() {
+          if (process.env.START_HOT) {
+            console.log('Starting main process');
+            spawn('npm', ['run', 'start-main-dev'], {
+              shell: true,
+              env: process.env,
+              stdio: 'inherit'
+            })
+              .on('close', code => process.exit(code))
+              .on('error', spawnError => console.error(spawnError));
+          }
+        }
+      };
+const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+
+module.exports = {
+  mode: mode,
+  resolve: resolve,
+  devServer: devServer,
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js'
+  },
+  node: {
+    __dirname: false,
+    __filename: false
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.json']
+  },
+  devtool: 'source-map',
+  plugins: [],
   target: 'electron-renderer',
   entry: {
     app: ['@babel/polyfill', './src/index.tsx']
@@ -66,4 +123,4 @@ module.exports = merge.smart(baseConfig, {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     })
   ]
-});
+};
