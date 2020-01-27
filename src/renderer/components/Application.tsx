@@ -45,7 +45,7 @@ const myStyles = makeStyles(theme => ({
   },
   header: {
     container: { display: 'grid', gridTemplateColumns: '1fr 10fr 1fr' },
-    menuButton: {},
+    menuButton: { color: 'white' },
     text: {},
     social: {}
   }
@@ -61,7 +61,7 @@ const WholePage = (): JSX.Element => {
         <Toolbar variant="dense">
           <Grid container>
             <Grid container item xs={11}>
-              <IconButton edge="start" className={classes.header.menuButton} color="inherit" aria-label="menu">
+              <IconButton edge="start" color="inherit" aria-label="menu">
                 <MenuIcon />
               </IconButton>
               <Typography variant="h5" className={classes.title}>
@@ -84,12 +84,16 @@ const WholePage = (): JSX.Element => {
 
 export default hot(Application);
 
-const MyCard = (): JSX.Element => {
+export interface MyCardProps {
+  title: string;
+}
+
+const MyCard: React.FunctionComponent<MyCardProp> = ({ title }: MyCardProps) => {
   const classes = myStyles();
   return (
     <Card className={classes.card} raised={true}>
-      <CardHeader title="Monitors" subheader="Last updated: 1 minute" />
-      <CardContent>This explains the monitors</CardContent>
+      <CardHeader title={title} subheader={'Last updated: ' + Math.floor(Math.random(10) * 100) / 100 + ' minute'} />
+      <CardContent>This explains the {title.toLowerCase()}</CardContent>
     </Card>
   );
 };
@@ -98,7 +102,20 @@ const InnerPage = (): JSX.Element => {
   //  const classes = myStyles();
   return (
     <div style={{ display: 'grid', marginTop: '4em' }}>
-      <MyCard />
+      <Grid container>
+        <Grid item xs={3}>
+          <MyCard title={'Monitors'} />
+        </Grid>
+        <Grid item xs={3}>
+          <MyCard title={'Indicies'} />
+        </Grid>
+        <Grid item xs={3}>
+          <MyCard title={'Explorer'} />
+        </Grid>
+        <Grid item xs={3}>
+          <MyCard title={'Caches'} />
+        </Grid>
+      </Grid>
     </div>
   );
 };

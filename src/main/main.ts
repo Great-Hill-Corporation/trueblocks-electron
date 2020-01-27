@@ -35,6 +35,7 @@ const createWindow = async () => {
   }
 
   const shell = require('electron').shell;
+  const dialog = require('electron').remote;
   const menu = Menu.buildFromTemplate([
     {
       label: 'TrueBlocks',
@@ -46,7 +47,12 @@ const createWindow = async () => {
           },
           accelerator: 'CmdOrCtrl+O'
         },
-        { label: 'File Save' },
+        {
+          label: 'File Save',
+          click() {
+            dialog.showSaveDialog('test');
+          }
+        },
         {
           label: 'Exit',
           click() {
