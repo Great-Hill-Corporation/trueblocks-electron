@@ -43,7 +43,7 @@
     }
   },
   "build": {
-    "productName": "TrueBlocks Account Manager",
+    "productName": "Electric Pencil",
     "appId": "io.trueblocks.AcctManager",
     "mac": {
       "category": "Account Manager"
