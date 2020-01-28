@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -34,12 +34,36 @@ const createWindow = async () => {
     );
   }
 
-  // if (process.env.NODE_ENV !== 'production') {
-  //     // Open DevTools, see https://github.com/electron/electron/issues/12438 for why we wait for dom-ready
-  //     win.webContents.once('dom-ready', () => {
-  //         win!.webContents.openDevTools();
-  //     });
-  // }
+  const shell = require('electron').shell;
+  const dialog = require('electron').remote;
+  const menu = Menu.buildFromTemplate([
+    {
+      label: 'TrueBlocks',
+      submenu: [
+        {
+          label: 'Open website',
+          click() {
+            shell.openExternal('http://trueblocks.io');
+          },
+          accelerator: 'CmdOrCtrl+O'
+        },
+        {
+          label: 'File Save',
+          click() {
+            dialog.showSaveDialog('test');
+          }
+        },
+        {
+          label: 'Exit',
+          click() {
+            app.quit();
+          },
+          accelerator: 'CmdOrCtrl+Q'
+        }
+      ]
+    }
+  ]);
+  Menu.setApplicationMenu(menu);
 
   win.on('closed', () => {
     win = null;

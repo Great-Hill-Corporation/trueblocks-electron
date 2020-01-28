@@ -1,11 +1,26 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+
+'use strict';
+
 const webpack = require('webpack');
-const merge = require('webpack-merge');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const path = require('path');
 
-const baseConfig = require('./webpack.base.config');
-
-module.exports = merge.smart(baseConfig, {
+module.exports = {
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js'
+  },
+  node: {
+    __dirname: false,
+    __filename: false
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.json']
+  },
+  devtool: 'source-map',
+  plugins: [],
   target: 'electron-main',
   entry: {
     main: './src/main/main.ts'
@@ -33,4 +48,4 @@ module.exports = merge.smart(baseConfig, {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     })
   ]
-});
+};
