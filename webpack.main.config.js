@@ -23,7 +23,7 @@ module.exports = {
   plugins: [],
   target: 'electron-main',
   entry: {
-    main: './src/main.ts'
+    main: './src/main/main.ts'
   },
   module: {
     rules: [
@@ -42,7 +42,7 @@ module.exports = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      reportFiles: ['src/**/*']
+      reportFiles: ['src/main/**/*']
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
