@@ -1,11 +1,16 @@
 import { combineReducers } from 'redux';
 
-import { FooterState, footerReducer } from './renderer/reducers/footerReducer';
+import { headerReducer } from './components';
+import { footerReducer } from './components';
+import { HeaderState } from './components/Header/reducers';
+import { FooterState } from './components/Footer/reducers';
 
 export interface RootState {
   footer: FooterState;
+  header: HeaderState;
 }
 
 export const rootReducer = combineReducers<RootState | undefined>({
-  footer: footerReducer
+  footer: footerReducer,
+  header: headerReducer
 });
